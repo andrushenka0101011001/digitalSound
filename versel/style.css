@@ -1,0 +1,544 @@
+/* ========================= */
+/* БАЗОВЫЕ НАСТРОЙКИ И ПЕРЕМЕННЫЕ */
+/* ========================= */
+:root {
+    --bg-color: #050a15;
+    --text-color: #e2e8f0;
+    --primary-color: #00ffff;
+    --secondary-color: #ff00ff;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --border-color: rgba(0, 255, 255, 0.2);
+    --modal-bg: #0b1120;
+}
+
+[data-theme="light"] {
+    --bg-color: #f0f4f8;
+    --text-color: #1a202c;
+    --primary-color: #0055ff;
+    --secondary-color: #d500d5;
+    --card-bg: rgba(0, 0, 0, 0.05);
+    --border-color: rgba(0, 85, 255, 0.3);
+    --modal-bg: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+h1, h2, h3, .logo {
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* ========================= */
+/* ШАПКА И НАВИГАЦИЯ */
+/* ========================= */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background: rgba(5, 10, 21, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+[data-theme="light"] header {
+    background: rgba(240, 244, 248, 0.9);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+nav {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+nav button {
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    font-size: 14px;
+    cursor: pointer;
+    transition: color 0.3s, text-shadow 0.3s;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+nav button:hover {
+    color: var(--primary-color);
+    text-shadow: 0 0 8px var(--primary-color);
+}
+
+/* ========================= */
+/* ГЛАВНЫЙ ЭКРАН (HERO) */
+/* ========================= */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 80vh;
+    padding: 0 5%;
+    gap: 40px;
+}
+
+.hero-left {
+    flex: 1;
+    max-width: 600px;
+}
+
+.tag {
+    color: var(--primary-color);
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    font-size: 54px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.hero h1 span {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--primary-color);
+}
+
+.hero p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    opacity: 0.8;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.main-btn, .ghost-btn {
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.main-btn {
+    background: var(--primary-color);
+    color: #000;
+    border: none;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+}
+
+[data-theme="light"] .main-btn {
+    color: #fff;
+}
+
+.main-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
+}
+
+.ghost-btn {
+    background: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.ghost-btn:hover {
+    background: var(--border-color);
+}
+
+.stats {
+    display: flex;
+    gap: 30px;
+}
+
+.stat-box h2 {
+    font-size: 32px;
+    color: var(--primary-color);
+}
+
+.stat-box span {
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+.hero-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-right img {
+    max-width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.1);
+    filter: grayscale(20%) contrast(120%);
+}
+
+/* ========================= */
+/* КАРТОЧКИ И КОНТЕНТ */
+/* ========================= */
+.cards-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 40px 5%;
+}
+
+.info-card, .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 25px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    backdrop-filter: blur(5px);
+}
+
+.info-card:hover, .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 255, 255, 0.1);
+    background: rgba(0, 255, 255, 0.05);
+}
+
+.info-card h3, .card h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.content-section {
+    padding: 40px 5%;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.content-section h2 {
+    margin-bottom: 20px;
+    font-size: 32px;
+}
+
+.content-section p {
+    margin-bottom: 15px;
+    line-height: 1.8;
+    opacity: 0.85;
+}
+
+/* =================================================== */
+/* МОДАЛЬНЫЕ ОКНА ИСПРАВЛЕНЫ ПОД ЭФФЕКТ ПОЛНЫХ СТРАНИЦ */
+/* =================================================== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-color); /* Фон теперь глухой, как у новой страницы */
+    overflow-y: auto;
+}
+
+.modal-content {
+    background-color: var(--modal-bg);
+    margin: 0; /* Убраны отступы, окно раскрывается в полный экран */
+    padding: 40px 5%;
+    border: none; /* Убраны лишние рамки pop-up окон */
+    border-radius: 0; /* Окно теперь строго прямоугольное на весь экран */
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+    from {opacity: 0; transform: translateY(10px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+.close {
+    display: none; /* Прячем крестик, так как теперь есть удобные кнопки Назад */
+}
+
+.modal h2 {
+    margin-bottom: 25px;
+    color: var(--primary-color);
+    font-size: 36px;
+}
+
+.modal p {
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-size: 16px;
+    text-align: justify;
+    opacity: 0.9;
+}
+
+.modal-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    border: 1px solid var(--border-color);
+}
+
+.modal-nav {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-nav button {
+    background: rgba(0, 255, 255, 0.1);
+    color: var(--primary-color);
+    border: 1px solid var(--border-color);
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.modal-nav button:hover {
+    background: var(--primary-color);
+    color: #000;
+}
+
+/* ========================= */
+/* WIKI HIGHLIGHT */
+/* ========================= */
+.wiki-highlight {
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: none;
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* ========================= */
+/* AI АССИСТЕНТ */
+/* ========================= */
+.assistant-toggle {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: var(--primary-color);
+    color: #000;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+    z-index: 999;
+    transition: transform 0.3s;
+}
+
+[data-theme="light"] .assistant-toggle {
+    color: #fff;
+}
+
+.assistant-toggle:hover {
+    transform: scale(1.1);
+}
+
+.assistant {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 320px;
+    background: var(--modal-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    display: none;
+    flex-direction: column;
+    z-index: 999;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    overflow: hidden;
+}
+
+.assistant-header {
+    background: rgba(0, 255, 255, 0.1);
+    padding: 15px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.exit-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.assistant-chat {
+    height: 250px;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 13px;
+}
+
+.bot-message, .user-message {
+    padding: 10px 15px;
+    border-radius: 10px;
+    max-width: 85%;
+    line-height: 1.4;
+}
+
+.bot-message {
+    background: var(--card-bg);
+    align-self: flex-start;
+    border-bottom-left-radius: 0;
+}
+
+.user-message {
+    background: rgba(0, 255, 255, 0.2);
+    align-self: flex-end;
+    border-bottom-right-radius: 0;
+}
+
+.assistant-input {
+    display: flex;
+    border-top: 1px solid var(--border-color);
+}
+
+.assistant-input input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 15px;
+    color: var(--text-color);
+    outline: none;
+}
+
+.assistant-input button {
+    background: rgba(0, 255, 255, 0.1);
+    border: none;
+    border-left: 1px solid var(--border-color);
+    color: var(--primary-color);
+    padding: 0 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.assistant-input button:hover {
+    background: var(--primary-color);
+    color: #000;
+}
+
+/* ========================= */
+/* ВИКТОРИНА (QUIZ) */
+/* ========================= */
+.quiz-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.quiz-buttons button {
+    padding: 15px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.quiz-buttons button:hover {
+    background: var(--border-color);
+}
+
+#quizResult {
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+}
+
+/* ========================= */
+/* АДАПТИВНОСТЬ (МОБИЛЬНЫЕ) */
+/* ========================= */
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 40px;
+    }
+    .hero h1 {
+        font-size: 36px;
+    }
+    .hero-buttons {
+        justify-content: center;
+    }
+    .stats {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    nav {
+        justify-content: center;
+        margin-top: 15px;
+    }
+    header {
+        flex-direction: column;
+    }
+    .lab-container {
+        flex-direction: column;
+    }
+    .quiz-buttons {
+        grid-template-columns: 1fr;
+    }
+}
